@@ -1,51 +1,37 @@
-square = function(x) 
+function square(x) 
 {
 	return x*x;
 }
 
-guess = function(n)
+function enterNum()
 {
-	chalk.print("Enter a number: ");
 
-	return {
-		entrybox : function(str)
+	chalk.println("Enter a number > 4 and < 20.");
+
+	return {	
+	entrybox: function(str)
 		{
-			var m = parseInt(str);
-			if( m > n )
-			{
-				chalk.println("Too high");
-				return guess(n);
+			var num = parseInt(str);
 
-			}
-			else if ( m < n )
+			if(num <= 4 || num >= 20 )
 			{
-				chalk.println("Too low");
-				return guess(n);
+				chalk.println("Number out of range. Please enter number > 4 and < 20.");
+				return enterNum();
 			}
+
 			else
 			{
-				chalk.println("Yay you win!");
+				chalk.println(num+" squared is "+square(num));
+				return enterNum();
 			}
 		}
 	};
 }
 
-main = function() 
+
+function main() 
 {
-	chalk.println("Bullshit");
-	return guess(4);
-
-	/*var num = prompt("Please enter a number > 4 and < 20: ");
-
-	while ( num < 4 || num > 20 )
-	{
-		alert("Invalid input. Please enter a number > 4 and < 20.");
-
-		num = prompt("Please enter an integer > 4 and < 20");
-	}
-
-	chalk.println("The square of " + num + " is " + square(num));
-	*/
+	return enterNum();
 }
 
 
