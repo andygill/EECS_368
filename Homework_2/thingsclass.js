@@ -103,7 +103,6 @@ main = function()
 
                 uni.step(gc);
 
-                //uni.addThing(parseInt(x),parseInt(y));
         });
 
 }
