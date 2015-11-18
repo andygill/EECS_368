@@ -7,12 +7,12 @@ var Point = function(a,b) {
     var y = b;
 
     this.draw = function(gc)  {
-        gc.beginPath();
-        gc.arc(xpos,ypos,rad, 0, 2 * Math.PI, false);
-        gc.fillStyle = col;
-        gc.fill();
+        var ctx = gc.getContext("2d");
+        ctx.beginPath();
+        ctx.arc(x, y, 100, 0, 2 * Math.PI);
+        ctx.stroke();
     }
-}
+};
 
 //position to identify points on canvas
 function getPosition(event)
@@ -20,6 +20,8 @@ function getPosition(event)
     var x = new Number();
     var y = new Number();
     var canvas = document.getElementById("canvas");
+
+    //var myPoint = new Point(x,y);
 
     if (event.x != undefined && event.y != undefined)
     {
@@ -37,12 +39,23 @@ function getPosition(event)
     x -= canvas.offsetLeft;
     y -= canvas.offsetTop;
 
-    alert("Alerty: " + x + y);
+    alert("Alert, point will be drawn at: " + x + ", " + y);
+
+};
+
+function babyDraw() {
+    var c = document.getElementById("babyCanvas");
+    var ctx = c.getContext("2d");
+    ctx.beginPath();
+    ctx.arc(100,75,50,0,2*Math.PI);
+    ctx.stroke();
 
 }
 
 function main()
 {
-    var canvas = document.getElementById("canvas");
+    //var canvas = document.getElementById("canvas");
+    babyCanvas.addEventListener("mousedown", babyDraw, false);
+    //babyDraw();
     canvas.addEventListener("mousedown", getPosition, false);
 }
