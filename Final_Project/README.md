@@ -5,13 +5,16 @@ An interactive Haskell implementations of the A* algorithm using Haskell and Jav
 ##Backlog
 
 #####Javascript
-let users enter as many x,y coordinates as they want.
-let users specify edges between points (draw a line, label it's cost)
+- Draw and save nodes for each mouseclick
+    - Need Array to Push point pairs to
+    - How to implement this?
+- Draw and enter costs for edges between nodes
+- Implement "I'm finished button using" Promises.
 
-######Haskell
-Continue taking notes on A* algorithm
-Look at Haskell implementations
-Break down data types
+#####Haskell
+- Continue taking notes on A* algorithm
+- Look at Haskell implementations
+- Break down data types
 
 #####Completed
 - Set up index.html

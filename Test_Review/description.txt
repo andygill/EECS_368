@@ -1,0 +1,9 @@
+Evan Nichols
+EECS 368
+Homework 2 Description
+
+The thingsclass.js drives the interaction and animation of index.html. It uses two Promises to procure from the user a number of balls and a strength of gravity for the animation. 
+
+A Promise.all() function takes the two chalk.entrybox() functions in as arguments. Once fulfilled, a function reads the return values of the Promises (in this case, two integer values), and uses them to instantiate a new Things object.
+
+The animation and "gravity" effect on the balls is handled within the move function of the Circle object. In lines 25-32 of thingsclass.js, we see how position changes based on initial velocity and gravity. The x position changes each step with the xvel, and the y position changes with both yvel and gravity. Every time a ball hits a wall, energy is lost. The if statements account for these energy losses as xvel and yvel are fractionally decreased with each wall bounce.

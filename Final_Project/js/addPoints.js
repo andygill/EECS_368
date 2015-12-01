@@ -1,27 +1,14 @@
-//Add Event Listener to document
-document.addEventListener("DOMContentLoaded", init, false);
-
-//need point object
-var Point = function(a,b) {
-    var x = a;
-    var y = b;
-
-    this.draw = function(gc)  {
-        var ctx = gc.getContext("2d");
-        ctx.beginPath();
-        ctx.arc(x, y, 100, 0, 2 * Math.PI);
-        ctx.stroke();
-    }
+var Point = function(a,b)
+{
+    var x = parseInt(a);
+    var y = parseInt(b);
 };
 
-//position to identify points on canvas
-function getPosition(event)
+var getPosition = function(event)
 {
     var x = new Number();
     var y = new Number();
-    var canvas = document.getElementById("canvas");
-
-    //var myPoint = new Point(x,y);
+    var c = document.getElementById("canvas");
 
     if (event.x != undefined && event.y != undefined)
     {
@@ -30,32 +17,18 @@ function getPosition(event)
     }
     else // Firefox method to get the position
     {
-        x = event.clientX + document.body.scrollLeft +
-        document.documentElement.scrollLeft;
-        y = event.clientY + document.body.scrollTop +
-        document.documentElement.scrollTop;
+        x = event.offsetX;
+        y = event.offsetY;
     }
 
-    x -= canvas.offsetLeft;
-    y -= canvas.offsetTop;
-
-    alert("Alert, point will be drawn at: " + x + ", " + y);
-
+        var ctx = c.getContext("2d");
+        ctx.beginPath();
+        ctx.arc(parseInt(x),parseInt(y),6,0,2*Math.PI);
+        ctx.fillStyle = "black"
+        ctx.fill();
 };
 
-function babyDraw() {
-    var c = document.getElementById("babyCanvas");
-    var ctx = c.getContext("2d");
-    ctx.beginPath();
-    ctx.arc(100,75,50,0,2*Math.PI);
-    ctx.stroke();
-
-}
-
-function main()
+main = function()
 {
-    //var canvas = document.getElementById("canvas");
-    babyCanvas.addEventListener("mousedown", babyDraw, false);
-    //babyDraw();
     canvas.addEventListener("mousedown", getPosition, false);
-}
+};

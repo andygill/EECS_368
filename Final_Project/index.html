@@ -1,24 +1,33 @@
+<!DOCTYPE html>
 <html>
-<head>
-	<link rel = "stylesheet" type="text/css" href="css/main.css">
-	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-  	<script src="https://www.promisejs.org/polyfills/promise-7.0.1.min.js"></script>
-  	<script src="js/chalk.20151006.js"></script>
-	<script src="js/addPoints.js"></script>
-</head>
+	<head>
+		<meta charset="utf-8">
+		<title>EECS 368 Final Project</title>
+		<link rel = "stylesheet" href="css/main.css">
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
 
-<body>
+		<!--<script src="https://www.promisejs.org/polyfills/promise-7.0.1.min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js" type="text/javascript"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js" type="text/javascript"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.0/backbone.localStorage-min.js" type="text/javascript"></script>
+		<script src="js/chalk.20151006.js"></script>
+		<script src="js/addPoints.js"></script>-->
 
-  <div id="chalk">
-	  <p>Click anywhere on the map to add a point.</p>
-	  <div>
-		  <canvas id="canvas" class = "canvas" width="300" height="300"></canvas>
-	  </div>
-  </div>
+	</head>
 
-  <div>
-	  <canvas id = "babyCanvas" width="300" height="300"></canvas>
-  </div>
+	<body>
+
+		<h1>Interactive Canvas</h1>
+		<h4>Evan Nichols, EECS 368</h4>
+		<canvas class = "mycanvas" id="canvas" width="500" height="500"></canvas>
+		<p>Click anywhere on the map to add a point.</p>
+
+		<script src = "js/jquery.js"></script>
+		<script src = "js/underscore.js"></script>
+		<script src = "js/backbone.js"></script>
+		<script src = "points.js"></script>
+		<!-- I will eventually need this for local storage
+		<script src = "js/backbone.js"></script>-->
 </body>
-
 </html>

@@ -1,5 +1,0 @@
-//Project Backlog
-
-Javascript
-let users enter as many x,y coordinates as they want.
-let users specify edges between points (draw a line, label it's cost)
