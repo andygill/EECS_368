@@ -17,55 +17,86 @@ defaults: {
 
 //Collection of Points
 var PointSet = Backbone.Collection.extend({
-    model: Point
+    model: Point,
+
+    //Save all of the point items under the "points-backbone" namespace.
+    localStorage: new Backbone.LocalStorage("points-backbone")
+
 });
 
+//Instantiate a New PointSet and add a few elements
+var myPoints = new PointSet();
+
+myPoints.add({color: 'black', x: 150, y:150, radius: 6 });
+myPoints.add({color: 'red', x: 100, y:100, radius: 8 });
+
+
 //A view to display the points on the canvas
-var CanvasView = Backbone.View.extend({
+var PointView = Backbone.View.extend({
+
    render: function() {
        var model = this.model, ctx = this.options.ctx;
+       //ctx.clearRect(0, 0, canvas.width, canvas.height);
+       ctx.fillStyle = model.get("color");
 
-       ctx.fillStyle = '#FF9000';
-       ctx.globalAlpha = 0.1;
        //draw the circle using the model
+       ctx.beginPath();
        ctx.arc(model.get("x"), model.get("y"), model.get("radius"),0,2*Math.PI);
        ctx.fill();
    }
 });
 
+// The MainView is the top-level piece of UI, the Canvas.
+var MainView = Backbone.View.extend({
 
-var SetView = Backbone.View.extend({
+    //Bind to the Canvas HTML element.
+    el: $("canvas"),
 
     //need to add events
+    events: {
+        "click": "createOnClick"
+    },
 
    initialize: function() {
-       this.listenTo(this.collection, "all", this.render);
+       this.listenTo(myPoints, 'add', this.render);
+       this.listenTo(myPoints, 'all', this.render);
    },
 
    render: function() {
        var canvas = this.el, ctx = canvas.getContext("2d");
        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-       this.collection.each(function(model) {
-           var view = new CanvasView({ctx: ctx, model: model});
+       myPoints.each(function(model) {
+           var view = new PointView({ctx: ctx, model: model});
            view.render();
        })
+   },
+
+   //If you click on the Main View, create new **Point** model,
+   // persisting it to *localStorage*
+   createOnClick: function(event) {
+
+
+       if (event.x != undefined && event.y != undefined){
+           x = event.x;
+           y = event.y;
+       } else // Firefox method to get the position
+       {
+           x = event.offsetX;
+           y = event.offsetY;
+       }
+
+       //create a new Point and persist it to localStorage.
+       myPoints.create({color:'black',x: x, y: y, radius: 6});
+
+       //Hahaha wow. This is weird.
+       //alert("Point created, x: "+ x + " y: "+y);
    }
 
 }); //end Set View
 
-
-//Instantiate a New PointSet and add a few elements
-var c = new PointSet();
-c.add({color: 'black', x: 150, y:150, radius: 6 });
-c.add({color: 'red', x: 100, y:100, radius: 8 });
-
 //Instantiate a canvas view
-var v = new SetView({
-   el: $("canvas"),
-   collection: c
-});
-
+var v = new MainView;
 v.render();
 
 }); // END MAIN FUNCTION
