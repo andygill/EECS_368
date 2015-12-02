@@ -2,9 +2,21 @@ html {
     font-family: Roboto, 'san-serif';
 }
 
+.content {
+    margin: 20px;
+}
+
 .flex-center {
   display: flex;
   justify-content: center;
+}
+
+.controls {
+    display:inline;
+}
+
+.radiusContainer {
+    display:block;
 }
 
 .mycanvas {
@@ -12,5 +24,6 @@ html {
     border: 1px solid black;
     width:500px;
     height:500px;
-
+    float: left;
+    margin-right: 10px;
 }
