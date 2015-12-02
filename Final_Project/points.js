@@ -27,9 +27,6 @@ var PointSet = Backbone.Collection.extend({
 //Instantiate a New PointSet and add a few elements
 var myPoints = new PointSet();
 
-myPoints.add({color: 'black', x: 150, y:150, radius: 6 });
-myPoints.add({color: 'red', x: 100, y:100, radius: 8 });
-
 
 //A view to display the points on the canvas
 var PointView = Backbone.View.extend({
@@ -52,14 +49,17 @@ var MainView = Backbone.View.extend({
     //Bind to the Canvas HTML element.
     el: $("canvas"),
 
-    //need to add events
+    //Add a New point on each click on the canvas.
     events: {
-        "click": "createOnClick"
+        "click": "createOnClick",
+        "change form": "updateRadius"
+
     },
 
    initialize: function() {
        this.listenTo(myPoints, 'add', this.render);
-       this.listenTo(myPoints, 'all', this.render);
+       //this.input = this.$("#radius");
+       //this.listenTo(myPoints, 'all', this.render);
    },
 
    render: function() {
@@ -76,6 +76,8 @@ var MainView = Backbone.View.extend({
    // persisting it to *localStorage*
    createOnClick: function(event) {
 
+       //this works for getting radius.
+       var radius = $("#radius").val();
 
        if (event.x != undefined && event.y != undefined){
            x = event.x;
@@ -87,10 +89,8 @@ var MainView = Backbone.View.extend({
        }
 
        //create a new Point and persist it to localStorage.
-       myPoints.create({color:'black',x: x, y: y, radius: 6});
+       myPoints.create({color:'black',x: x, y: y, radius: radius});
 
-       //Hahaha wow. This is weird.
-       //alert("Point created, x: "+ x + " y: "+y);
    }
 
 }); //end Set View

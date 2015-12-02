@@ -1,9 +1,3 @@
-var Point = function(a,b)
-{
-    var x = parseInt(a);
-    var y = parseInt(b);
-};
-
 var getPosition = function(event)
 {
     var x = new Number();
