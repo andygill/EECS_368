@@ -4,6 +4,12 @@
 // Load the application once the DOM is ready, using `jQuery.ready`:
 $(function(){
 
+//quick color picker toHexString
+$("#flat").spectrum({
+    flat:true,
+    showInput:true
+})
+
 // Point Model
 var Point = Backbone.Model.extend({
 
@@ -78,6 +84,8 @@ var MainView = Backbone.View.extend({
 
        //this works for getting radius.
        var radius = $("#radius").val();
+       var color = $("#flat").val();
+       alert(color);
 
        if (event.x != undefined && event.y != undefined){
            x = event.x;
