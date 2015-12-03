@@ -6,28 +6,35 @@
 		<link rel = "stylesheet" href="css/main.css">
 		<link rel = "stylesheet" href="css/spectrum.css">
 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
-
 	</head>
 
-	<body>
+<body>
+	<div id = "app" class = "content">
+		<h1>Interactive Canvas</h1>
+	<canvas class = "mycanvas" id="canvas" width="500" height="500"></canvas>
+		<div id = "controls" class = "controls">
+		<p>Click anywhere on the map to add a point. Use the slider and RGB picker to edit radius and color.</p>
 
-
-		<div class = "content">
-			<h1>Interactive Canvas</h1>
-			<h4>Evan Nichols, EECS 368</h4>
-		<canvas class = "mycanvas" id="canvas" width="500" height="500"></canvas>
-			<div class = "controls">
-			<p>Click anywhere on the map to add a point. Use the slider and RGB picker to edit radius and color.</p>
-			<form oninput = "amount.value = radius.value">
-				<div class = "radiusContainer">
+		<!-- Every time slider is changed, output is updated -->
+		<form oninput = "amount.value = radius.value">
+			<div class = "radiusContainer">
 				<b>Current Radius: </b>
-				<input type="range" id="radius" max="40">
-				<output name="amount" for="radius">0</output>
+				<input type="range" id="radius" max="50">
+				<output name="amount" for="radius"></output>
 			</div>
-				<input type="text" id="flat"/>
-			</form>
-			</div>
+			<input type="text" id="flat"></input>
+			<br/>
+			<button class = "btn" type="submit">Clear Canvas</button>
+		</form>
 		</div>
+
+		<div id="credits">
+			Created by
+			<br />
+			<a href="http://www.etnichols.com/">Evan Nichols</a>
+			<br /> <a href="http://github.com/e-nichols/EECS_368/tree/master/Final_Project">Backbone Interactive Canvas</a>.
+		</div>
+	</div>
 
 
 		<script src = "js/jquery.js"></script>

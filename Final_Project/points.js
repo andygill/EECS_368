@@ -1,16 +1,16 @@
 //Backbone Canvas Application
 //A meager attempt to learn Backbone, using Canvas.
 
-// Load the application once the DOM is ready, using `jQuery.ready`:
-$(function(){
-
-//quick color picker toHexString
+//Spectrum Color picker
 $("#flat").spectrum({
     flat:true,
     showInput:true
-})
+});
 
-// Point Model
+// Load the application once the DOM is ready, using `jQuery.ready`:
+$(function(){
+
+// Points model includes color, x, y, coordinates and a radius.
 var Point = Backbone.Model.extend({
 
 defaults: {
@@ -19,9 +19,9 @@ defaults: {
         y: 0,
         radius: 6
     }
-}); // end Point Model
+});
 
-//Collection of Points
+//Point Set will hold store all points created on canvas.
 var PointSet = Backbone.Collection.extend({
     model: Point,
 
@@ -30,19 +30,18 @@ var PointSet = Backbone.Collection.extend({
 
 });
 
-//Instantiate a New PointSet and add a few elements
+//Instantiate a global PointSet collection
 var myPoints = new PointSet();
 
 
-//A view to display the points on the canvas
+//A view to display individual points on the canvas
 var PointView = Backbone.View.extend({
 
    render: function() {
        var model = this.model, ctx = this.options.ctx;
-       //ctx.clearRect(0, 0, canvas.width, canvas.height);
-       ctx.fillStyle = model.get("color");
 
        //draw the circle using the model
+       ctx.fillStyle = model.get("color");
        ctx.beginPath();
        ctx.arc(model.get("x"), model.get("y"), model.get("radius"),0,2*Math.PI);
        ctx.fill();
@@ -58,14 +57,11 @@ var MainView = Backbone.View.extend({
     //Add a New point on each click on the canvas.
     events: {
         "click": "createOnClick",
-        "change form": "updateRadius"
-
     },
 
    initialize: function() {
        this.listenTo(myPoints, 'add', this.render);
-       //this.input = this.$("#radius");
-       //this.listenTo(myPoints, 'all', this.render);
+       this.clearButton = $("#clearButton");
    },
 
    render: function() {
@@ -82,10 +78,10 @@ var MainView = Backbone.View.extend({
    // persisting it to *localStorage*
    createOnClick: function(event) {
 
-       //this works for getting radius.
+       //this works for getting radius, but color is "one step off"
        var radius = $("#radius").val();
        var color = $("#flat").val();
-       alert(color);
+      // alert(color);
 
        if (event.x != undefined && event.y != undefined){
            x = event.x;
@@ -97,7 +93,7 @@ var MainView = Backbone.View.extend({
        }
 
        //create a new Point and persist it to localStorage.
-       myPoints.create({color:'black',x: x, y: y, radius: radius});
+       myPoints.create({color:color,x: x, y: y, radius: radius});
 
    }
 
