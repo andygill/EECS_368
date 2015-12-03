@@ -17,7 +17,7 @@ Interactive Canvas is a Javascript web application created with the Backbone.js 
 
 ####Resources Used
 
-**Backbone.js** – Overall application structure and functionality.
-**Jquery.js** – selecting and referencing HTML in the javascript code.
-**Spectrum.js** – A configurable color selector made by @bgrins.
-**Todos.js** – A very helpful and well documented example Backbone application contributed by Jérôme Gravel-Niquet. It helped me understand how to structure my application.
+-**Backbone.js** – Overall application structure and functionality.
+-**Jquery.js** – selecting and referencing HTML in the javascript code.
+-**Spectrum.js** – A configurable color selector made by @bgrins.
+-**Todos.js** – A very helpful and well documented example Backbone application contributed by Jérôme Gravel-Niquet. It helped me understand how to structure my application.
